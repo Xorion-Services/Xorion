@@ -1,5 +1,4 @@
-// Import Firebase functions
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
@@ -133,6 +132,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch and display previous orders
     async function fetchOrders() {
+        if (!auth.currentUser) {
+            alert("You need to be logged in to view orders.");
+            window.location.href = "login.html";
+            return;
+        }
+
         const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
         const querySnapshot = await getDocs(q);
         const ordersList = document.getElementById('orders-list');
@@ -150,7 +155,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Check the authentication state before fetching orders
     if (window.location.pathname.endsWith('orders.html')) {
-        fetchOrders();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                fetchOrders();
+            } else {
+                window.location.href = 'login.html'; // Redirect to login if not authenticated
+            }
+        });
     }
 });
