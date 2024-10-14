@@ -1,5 +1,3 @@
-// script.js
-
 // Import Firebase functions
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -21,12 +19,35 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Function to toggle password visibility
+function togglePasswordVisibility(inputFieldId, toggleButtonId) {
+    const inputField = document.getElementById(inputFieldId);
+    const toggleButton = document.getElementById(toggleButtonId);
+
+    if (inputField.type === "password") {
+        inputField.type = "text";
+        toggleButton.textContent = "Hide"; // Change button text to "Hide"
+    } else {
+        inputField.type = "password";
+        toggleButton.textContent = "Show"; // Change button text to "Show"
+    }
+}
+
+// Event listeners for password visibility toggles
+document.getElementById('toggle-password-visibility-login')?.addEventListener('click', () => {
+    togglePasswordVisibility('login-password', 'toggle-password-visibility-login');
+});
+
+document.getElementById('toggle-password-visibility-signup')?.addEventListener('click', () => {
+    togglePasswordVisibility('signup-password', 'toggle-password-visibility-signup');
+});
+
 // Function to handle user signup
 document.getElementById('signup-form')?.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
 
     // Check if password is at least 8 characters long
     if (password.length < 8) {
@@ -51,8 +72,8 @@ document.getElementById('signup-form')?.addEventListener('submit', (e) => {
 document.getElementById('login-form')?.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -65,12 +86,13 @@ document.getElementById('login-form')?.addEventListener('submit', (e) => {
             alert('Login failed: ' + error.message);
         });
 });
+
 // Function to handle new order submission
 document.getElementById('new-order-form')?.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value; // Use the logged-in user's email
+    const name = document.getElementById('order-name').value; // Adjusted for order form
+    const email = document.getElementById('order-email').value; // Use the logged-in user's email
     const service = document.getElementById('service').value;
     const price = document.getElementById('price').value;
 
