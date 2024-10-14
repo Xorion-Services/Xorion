@@ -9,9 +9,22 @@
 <body>
 
   <h2>Your Orders</h2>
-  <div id="orderList"></div>
-  <button onclick="location.href='new-order.html'">Place New Order</button>
+  
+  <!-- Section to display previous orders -->
+  <ul id="orders-list"></ul>
 
-  <script src="scripts.js"></script>
+  <!-- New order form -->
+  <h3>Place New Order</h3>
+  <form id="new-order-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="service" placeholder="Service Required" required>
+      <input type="number" id="price" placeholder="Offer Price (INR)" required>
+      <button type="submit">Submit Order</button>
+  </form>
+
+  <button onclick="location.href='new-order.html'">Go to New Order Page</button>
+
+  <script type="module" src="scripts.js"></script>
 </body>
 </html>
