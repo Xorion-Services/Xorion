@@ -5,7 +5,7 @@ body {
 }
 
 h1, h2 {
-  color: #b19cd9;
+  color: #6513dc; /* Updated accent color */
 }
 
 input, button {
@@ -13,24 +13,24 @@ input, button {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #b19cd9;
+  border: 1px solid #6513dc; /* Updated border color */
   border-radius: 5px;
   background-color: #333;
   color: #fff;
 }
 
 button {
-  background-color: #b19cd9;
+  background-color: #6513dc; /* Updated button background color */
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #d4b3ed;
+  background-color: #9c7dff; /* Lighter shade for hover effect */
 }
 
 .eye-btn {
   cursor: pointer;
-  color: #b19cd9;
+  color: #6513dc; /* Updated eye button color */
   margin-left: 5px;
 }
 
@@ -41,10 +41,4 @@ button:hover {
   background-color: #2a2a2a;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Additional Focus State for Inputs */
-input:focus {
-  border-color: #d4b3ed;
-  outline: none; /* Remove default outline */
 }
