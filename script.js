@@ -65,30 +65,6 @@ document.getElementById('login-form')?.addEventListener('submit', (e) => {
             alert('Login failed: ' + error.message);
         });
 });
-
-// Function to toggle password visibility
-function togglePasswordVisibility(inputFieldId, toggleButtonId) {
-    const inputField = document.getElementById(inputFieldId);
-    const toggleButton = document.getElementById(toggleButtonId);
-
-    if (inputField.type === "password") {
-        inputField.type = "text";
-        toggleButton.classList.add("visible");
-    } else {
-        inputField.type = "password";
-        toggleButton.classList.remove("visible");
-    }
-}
-
-// Event listeners for password visibility toggles
-document.getElementById('toggle-password-visibility-login')?.addEventListener('click', () => {
-    togglePasswordVisibility('password', 'toggle-password-visibility-login');
-});
-
-document.getElementById('toggle-password-visibility-signup')?.addEventListener('click', () => {
-    togglePasswordVisibility('password', 'toggle-password-visibility-signup');
-});
-
 // Function to handle new order submission
 document.getElementById('new-order-form')?.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
