@@ -86,7 +86,7 @@ document.getElementById('loginform')?.addEventListener('submit', (e) => {
 });
 
 // Function to handle new order submission
-document.getElementById('orderForm')?.addEventListener('submit', async (e) => {
+document.getElementById('new-order-form')?.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
     const name = document.getElementById('name').value; // Adjusted for order form
