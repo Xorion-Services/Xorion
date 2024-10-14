@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // New order form event listener
-    const newOrderForm = document.getElementById('new-order-form');
+    const newOrderForm = document.getElementById('orderForm');
     if (newOrderForm) {
         newOrderForm.addEventListener('submit', async (e) => {
             e.preventDefault();
