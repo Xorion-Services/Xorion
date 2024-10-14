@@ -42,3 +42,9 @@ button:hover {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+/* Additional Focus State for Inputs */
+input:focus {
+  border-color: #d4b3ed;
+  outline: none; /* Remove default outline */
+}
