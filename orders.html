@@ -12,6 +12,24 @@
   
   <!-- Section to display previous orders -->
   <ul id="orders-list"></ul>
+
+  <!-- New order form -->
+  <h3>Place New Order</h3>
+  <form id="new-order-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="service" placeholder="Service Required" required>
+      <input type="number" id="price" placeholder="Offer Price (INR)" required>
+      <button type="submit">Submit Order</button>
+  </form>
+
+  <h3>Update Order Status</h3>
+  <form id="update-status-form">
+      <input type="text" id="order-id" placeholder="Order ID" required>
+      <input type="text" id="new-status" placeholder="New Status" required>
+      <button type="submit">Update Status</button>
+  </form>
+
   <button onclick="location.href='new-order.html'">Go to New Order Page</button>
 
   <script type="module" src="script.js"></script>
