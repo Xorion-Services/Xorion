@@ -57,7 +57,6 @@ document.getElementById('signup-form')?.addEventListener('submit', (e) => {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Successfully signed up
             console.log('Signup successful:', userCredential.user);
             alert('Account created successfully! Redirecting to login...');
             window.location.href = 'login.html'; // Redirect to login page
@@ -77,7 +76,6 @@ document.getElementById('login-form')?.addEventListener('submit', (e) => {
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Successfully logged in
             console.log('Login successful:', userCredential.user);
             window.location.href = 'orders.html'; // Redirect to orders page
         })
@@ -91,8 +89,8 @@ document.getElementById('login-form')?.addEventListener('submit', (e) => {
 document.getElementById('new-order-form')?.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const name = document.getElementById('order-name').value; // Adjusted for order form
-    const email = document.getElementById('order-email').value; // Use the logged-in user's email
+    const name = document.getElementById('name').value; // Adjusted for order form
+    const email = auth.currentUser.email; // Use the logged-in user's email
     const service = document.getElementById('service').value;
     const price = document.getElementById('price').value;
 
@@ -105,7 +103,7 @@ document.getElementById('new-order-form')?.addEventListener('submit', async (e) 
     try {
         // Add new order to Firestore
         const docRef = await addDoc(collection(db, 'orders'), {
-            username: auth.currentUser.email, // Assuming username is the logged-in user's email
+            username: email, // Use the logged-in user's email
             name: name,
             email: email,
             service: service,
