@@ -43,7 +43,7 @@ document.getElementById('toggle-password-visibility-signup')?.addEventListener('
 });
 
 // Function to handle user signup
-document.getElementById('signup-form')?.addEventListener('submit', (e) => {
+document.getElementById('signupform')?.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent default form submission
 
     const email = document.getElementById('signup-email').value;
@@ -68,7 +68,7 @@ document.getElementById('signup-form')?.addEventListener('submit', (e) => {
 });
 
 // Function to handle user login
-document.getElementById('login-form')?.addEventListener('submit', (e) => {
+document.getElementById('loginform')?.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent default form submission
 
     const email = document.getElementById('login-email').value;
