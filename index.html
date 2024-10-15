@@ -3,70 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xorion - Home</title>
+  <title>Xorion</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      background-color: #1a1a1a;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
 
-    .write-text {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4em;
-      color: #bc51ec; /* Accent color */
-      border-right: 2px solid #bc51ec; /* Cursor effect */
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: writeText 4s steps(40, end) forwards, blinkCursor 1s step-end infinite;
-    }
-
-    @keyframes writeText {
-      from {
-        width: 0;
-      }
-      to {
-        width: 10ch; /* Adjust to match the number of characters in "Xorion" */
-      }
-    }
-
-    @keyframes blinkCursor {
-      from {
-        border-right-color: #bc51ec;
-      }
-      to {
-        border-right-color: transparent;
-      }
-    }
-
-    .login-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #bc51ec; /* Accent color */
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      font-size: 1.2em;
-      cursor: pointer;
-    }
-
-    .login-btn:hover {
-      background-color: #d892f6;
-    }
-  </style>
+  <!-- Link to Google Fonts for cursive effect -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1 class="write-text">Xorion</h1>
+  <div class="hero-container">
+    <h1 class="hero-title cursive">Xorion</h1>
+    <p class="hero-subtitle">Elevating digital experiences with advanced technology solutions.</p>
+    <button class="cta-button">Get Started</button>
+  </div>
 
-  <button class="login-btn" onclick="location.href='login.html'">Login or Signup</button>
+  <script>
+    // Adding the typing effect to the Xorion title with cursive font
+    const titleElement = document.querySelector('.hero-title');
+    let text = 'Xorion';
+    let index = 0;
+
+    function typeEffect() {
+      if (index < text.length) {
+        titleElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 150); // Adjust speed of typing effect
+      }
+    }
+
+    window.onload = () => {
+      titleElement.textContent = ''; // Clear text
+      typeEffect();
+    };
+  </script>
 
 </body>
 </html>
