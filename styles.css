@@ -4,8 +4,8 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-h1, h2 {
-  color: #6513dc; /* Updated accent color */
+h1, h2, h3, label, p {
+  color: #bc51ec; /* Accent color */
 }
 
 input, button {
@@ -13,24 +13,24 @@ input, button {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #6513dc; /* Updated border color */
+  border: 1px solid #bc51ec; /* Accent color */
   border-radius: 5px;
   background-color: #333;
   color: #fff;
 }
 
 button {
-  background-color: #6513dc; /* Updated button background color */
+  background-color: #bc51ec; /* Accent color */
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #9c7dff; /* Lighter shade for hover effect */
+  background-color: #d892f6; /* Slightly lighter version of the accent color */
 }
 
 .eye-btn {
   cursor: pointer;
-  color: #6513dc; /* Updated eye button color */
+  color: #bc51ec; /* Accent color */
   margin-left: 5px;
 }
 
@@ -41,4 +41,22 @@ button:hover {
   background-color: #2a2a2a;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #bc51ec; /* Accent color */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #333;
+}
+
+.order-status {
+  font-weight: bold;
+  color: #bc51ec; /* Accent color */
 }
