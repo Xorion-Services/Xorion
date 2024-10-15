@@ -1,66 +1,63 @@
+/* Global styling */
 body {
   background-color: #1a1a1a;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
 }
 
+/* Headers */
 h1, h2 {
-  color: #bc51ec; /* Accent color */
+  color: #bc51ec;
 }
 
+/* Form input and buttons */
 input, button {
   margin: 10px 0;
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #bc51ec; /* Accent color */
+  border: 1px solid #bc51ec;
   border-radius: 5px;
   background-color: #333;
   color: #fff;
-  position: relative; /* Required for ripple effect */
-  overflow: hidden; /* Clip the ripple animation within the button */
 }
 
+/* Buttons */
 button {
-  background-color: #bc51ec; /* Accent color */
+  background-color: #bc51ec;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden; /* Required for ripple effect */
 }
 
+/* Hover effect: Make it darker */
 button:hover {
-  background-color: #a145d9; /* Darker accent color on hover */
+  background-color: #9a40c9; /* Darker shade of the accent color */
 }
 
-button:active {
-  background-color: #8e3ac6; /* Even darker when clicked */
-}
-
-/* Ripple (droplet) effect */
-button::before {
-  content: "";
-  position: absolute;
-  background: rgba(255, 255, 255, 0.3); /* Ripple color */
-  border-radius: 50%;
-  transform: scale(0);
-  width: 200%;
-  height: 200%;
-  opacity: 0;
-  transition: transform 0.6s, opacity 1s;
-}
-
+/* Active effect (ripple) */
 button:active::before {
-  transform: scale(1);
-  opacity: 1;
-  top: -50%; 
-  left: -50%;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
 }
 
-.eye-btn {
-  cursor: pointer;
-  color: #bc51ec; /* Accent color */
-  margin-left: 5px;
+/* Ripple effect animation */
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
 }
 
+/* Form container */
 .form-container {
   max-width: 400px;
   margin: 50px auto;
@@ -70,7 +67,9 @@ button:active::before {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Ripple effect fixes */
-button:focus::before {
-  transition: none; /* Remove the transition after the ripple effect */
+/* Eye button for password toggle */
+.eye-btn {
+  cursor: pointer;
+  color: #bc51ec;
+  margin-left: 5px;
 }
