@@ -34,7 +34,7 @@
             text-align: center;
         }
 
-        input, button {
+        input, select, button {
             margin: 10px 0;
             padding: 10px;
             width: 100%;
@@ -85,66 +85,18 @@
     <div class="form-container">
         <h1>New Order</h1>
         <form id="orderForm">
-            <input type="text" id="itemName" placeholder="Enter item name" required>
-            <input type="number" id="itemQuantity" placeholder="Enter quantity" required>
-            <input type="text" id="itemDescription" placeholder="Enter description" required>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <select id="service" required>
+                <option value="" disabled selected>Select Service</option>
+                <option value="Service A">Service A</option>
+                <option value="Service B">Service B</option>
+                <option value="Service C">Service C</option>
+            </select>
+            <input type="number" id="price" placeholder="Offered Price" required>
             <button type="submit">Place Order</button>
         </form>
     </div>
-
-    <!-- Firebase script and custom script -->
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"></script>
-    <script src="script.js" type="module"></script>
-
-    <script>
-        // Initialize Firebase app
-        const firebaseConfig = {
-            apiKey: "AIzaSyAUuK-7DNf8dNijkxg78MmJAXuVcPWN-pk",
-            authDomain: "xorion-2403.firebaseapp.com",
-            projectId: "xorion-2403",
-            storageBucket: "xorion-2403.appspot.com",
-            messagingSenderId: "553221192525",
-            appId: "1:553221192525:web:486e0b738988edfc2a9504",
-            measurementId: "G-BL2WDYJYT6"
-        };
-        firebase.initializeApp(firebaseConfig);
-
-        // Handle order form submission
-        const form = document.getElementById('orderForm');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const itemName = document.getElementById('itemName').value;
-            const itemQuantity = document.getElementById('itemQuantity').value;
-            const itemDescription = document.getElementById('itemDescription').value;
-
-            // Firebase database logic to submit the order
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    const order = {
-                        name: itemName,
-                        quantity: itemQuantity,
-                        description: itemDescription,
-                        status: 'Pending',
-                        userId: user.uid
-                    };
-
-                    firebase.firestore().collection('orders').add(order)
-                        .then(() => {
-                            alert('Order placed successfully!');
-                            form.reset();
-                        })
-                        .catch((error) => {
-                            console.error('Error placing order: ', error);
-                        });
-                } else {
-                    alert('You need to log in first.');
-                }
-            });
-        });
-    </script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
