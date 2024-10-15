@@ -4,16 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xorion - Orders</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .orders-container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #7abfe1;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+    }
+    button {
+      background-color: #7abfe1;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5ca4c7;
+    }
+  </style>
 </head>
 <body>
-
-  <h2>Your Orders</h2>
-  
-  <!-- Section to display previous orders -->
-  <ul id="orders-list"></ul>
-  <button onclick="location.href='new-order.html'">Place New Order</button>
-
+  <div class="orders-container">
+    <h2>Your Orders</h2>
+    <ul id="orders-list"></ul>
+    <h3>Place New Order</h3>
+    <form id="new-order-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="service" placeholder="Service Required" required>
+      <input type="number" id="price" placeholder="Offer Price (INR)" required>
+      <button type="submit">Submit Order</button>
+    </form>
+  </div>
   <script type="module" src="script.js"></script>
 </body>
 </html>
