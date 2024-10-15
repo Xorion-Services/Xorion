@@ -3,39 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xorion</title>
+  <title>Xorion - Home</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .write-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4em;
+      color: #bc51ec; /* Accent color */
+      border-right: 2px solid #bc51ec; /* Cursor effect */
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: writeText 4s steps(40, end) forwards, blinkCursor 1s step-end infinite;
+    }
+
+    @keyframes writeText {
+      from {
+        width: 0;
+      }
+      to {
+        width: 10ch; /* Adjust to match the number of characters in "Xorion" */
+      }
+    }
+
+    @keyframes blinkCursor {
+      from {
+        border-right-color: #bc51ec;
+      }
+      to {
+        border-right-color: transparent;
+      }
+    }
+
+    .login-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #bc51ec; /* Accent color */
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      background-color: #d892f6;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="hero-container">
-    <h1 class="cursive">Xorion</h1>
-    <button id="get-started-btn" onclick="location.href='login.html'">Get Started</button>
-  </div>
+  <h1 class="write-text">Xorion</h1>
 
-  <script>
-    // Add ripple effect to buttons
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
+  <button class="login-btn" onclick="location.href='login.html'">Login or Signup</button>
 
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        ripple.classList.add('ripple');
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-    });
-  </script>
 </body>
 </html>
