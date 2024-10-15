@@ -4,7 +4,7 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-h1, h2, h3, label, p {
+h1, h2 {
   color: #bc51ec; /* Accent color */
 }
 
@@ -17,15 +17,42 @@ input, button {
   border-radius: 5px;
   background-color: #333;
   color: #fff;
+  position: relative; /* Required for ripple effect */
+  overflow: hidden; /* Clip the ripple animation within the button */
 }
 
 button {
   background-color: #bc51ec; /* Accent color */
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #d892f6; /* Slightly lighter version of the accent color */
+  background-color: #a145d9; /* Darker accent color on hover */
+}
+
+button:active {
+  background-color: #8e3ac6; /* Even darker when clicked */
+}
+
+/* Ripple (droplet) effect */
+button::before {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3); /* Ripple color */
+  border-radius: 50%;
+  transform: scale(0);
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transition: transform 0.6s, opacity 1s;
+}
+
+button:active::before {
+  transform: scale(1);
+  opacity: 1;
+  top: -50%; 
+  left: -50%;
 }
 
 .eye-btn {
@@ -43,20 +70,7 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  padding: 10px;
-  border: 1px solid #bc51ec; /* Accent color */
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #333;
-}
-
-.order-status {
-  font-weight: bold;
-  color: #bc51ec; /* Accent color */
+/* Ripple effect fixes */
+button:focus::before {
+  transition: none; /* Remove the transition after the ripple effect */
 }
