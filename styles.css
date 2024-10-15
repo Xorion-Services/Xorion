@@ -1,18 +1,24 @@
+/* General Body Styling */
 body {
   background-color: #1a1a1a;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
-  height: 100vh;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 0;
+  height: 100vh;
 }
 
+/* Centering for Index Page */
 .hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   text-align: center;
 }
 
+/* Text Styling */
 h1, h2 {
   color: #bc51ec;
 }
@@ -21,6 +27,23 @@ h1, h2 {
   font-family: 'Brush Script MT', cursive;
   font-size: 3em;
   margin: 20px 0;
+}
+
+.hero-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* Form and Button Styling */
+input, button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #bc51ec;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
 }
 
 button {
@@ -39,6 +62,7 @@ button:hover {
   background-color: #a03fd9;
 }
 
+/* Ripple Effect */
 .ripple {
   position: absolute;
   background: rgba(255, 255, 255, 0.5);
@@ -67,4 +91,79 @@ button:hover {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* Styling for Forms and Inputs */
+input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #bc51ec;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #bc51ec;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a03fd9;
+}
+
+/* Password Visibility Toggle Button */
+.eye-btn {
+  cursor: pointer;
+  color: #bc51ec;
+  margin-left: 5px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Previous Orders List */
+#orders-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#orders-list li {
+  background-color: #333;
+  border: 1px solid #bc51ec;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Forms Specific */
+form input[type="text"],
+form input[type="email"],
+form input[type="number"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #bc51ec;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Form Containers */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
