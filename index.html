@@ -1,42 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xorion</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xorion</title>
 </head>
-<body>
+<body style="margin: 0; padding: 0; height: 100%; display: flex; justify-content: center; align-items: center; font-family: 'Arial', sans-serif;">
 
-  <div class="hero-container">
-    <h1 class="cursive wipe-left">Xorion</h1>
-    <h2 class="hero-subtitle">Welcome to the Future of Services</h2>
-    <button id="get-started-btn" onclick="location.href='login.html'">Get Started</button>
-  </div>
+    <div style="background-image: url('https://wallpapercave.com/wp/wp3416320.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    
+    <div style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 50px; border-radius: 10px; text-align: center; backdrop-filter: blur(10px); box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);">
+            <h1 style="color: #bc51ec; font-size: 4em; margin-bottom: 20px; font-family: 'Brush Script MT', cursive;">Xorion</h1>
+            <button onclick="window.location.href='login.html'" style="background-color: #bc51ec; border: none; color: white; padding: 10px 20px; font-size: 1.2em; cursor: pointer; border-radius: 5px;">Get Started</button>
+        </div>
+    </div>
 
-  <script>
-    // Add ripple effect to buttons
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', function (e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        ripple.classList.add('ripple');
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-    });
-  </script>
 </body>
 </html>
