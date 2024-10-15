@@ -4,37 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xorion - Signup</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #7abfe1;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+    }
+    button {
+      background-color: #7abfe1;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5ca4c7;
+    }
+  </style>
 </head>
 <body>
-
   <div class="form-container">
     <h2>Signup</h2>
     <form id="signupForm">
       <label for="username">Username</label>
       <input type="text" id="username" required>
-      
       <label for="email">Email</label>
       <input type="email" id="email" required>
-      
       <label for="password">Password</label>
-      <div class="password-container">
-        <input type="password" id="password" minlength="8" required>
-        <span id="togglePassword" class="eye-btn">&#128065;</span>
-      </div>
-      
+      <input type="password" id="password" required>
       <label for="confirmPassword">Confirm Password</label>
-      <div class="password-container">
-        <input type="password" id="confirmPassword" minlength="8" required>
-        <span id="toggleConfirmPassword" class="eye-btn">&#128065;</span>
-      </div>
-      
+      <input type="password" id="confirmPassword" required>
       <button type="submit">Signup</button>
-      
-      <p>Already have an account? <a href="login.html">Login here</a></p>
+      <p>Already have an account? <a href="login.html" style="color: #7abfe1;">Login here</a></p>
     </form>
   </div>
-
   <script type="module" src="script.js"></script>
 </body>
 </html>
