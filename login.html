@@ -4,31 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xorion - Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #7abfe1;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+    }
+    button {
+      background-color: #7abfe1;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5ca4c7;
+    }
+  </style>
 </head>
 <body>
-
   <div class="form-container">
     <h2>Login</h2>
     <form id="loginForm">
-      <label for="username">Username</label>
-      <input type="text" id="username" required>
-      
       <label for="email">Email</label>
       <input type="email" id="email" required>
-      
       <label for="password">Password</label>
-      <div class="password-container">
-        <input type="password" id="password" required>
-        <span id="togglePassword" class="eye-btn" aria-label="Toggle password visibility">&#128065;</span>
-      </div>
-      
+      <input type="password" id="password" required>
       <button type="submit">Login</button>
-      
-      <p>Don't have an account? <a href="signup.html">Signup now</a></p>
+      <p>Don't have an account? <a href="signup.html" style="color: #7abfe1;">Signup now</a></p>
     </form>
   </div>
-
   <script type="module" src="script.js"></script>
 </body>
 </html>
