@@ -5,64 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xorion</title>
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Link to Google Fonts for cursive effect -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div class="hero-container">
-    <h1 class="hero-title cursive" id="xorion-title"></h1>
-    <p class="hero-subtitle">Elevating digital experiences with advanced technology solutions.</p>
-
-    <!-- Link the button to login.html -->
-    <a href="login.html">
-      <button class="cta-button ripple-button">Get Started</button>
-    </a>
+    <h1 class="cursive">Xorion</h1>
+    <h2 class="hero-subtitle">Welcome to the Future of Services</h2>
+    <button id="get-started-btn" onclick="location.href='login.html'">Get Started</button>
   </div>
 
   <script>
-    // Typing effect for Xorion text
-    const titleElement = document.getElementById('xorion-title');
-    const text = 'Xorion';
-    let index = 0;
-
-    function typeEffect() {
-      if (index < text.length) {
-        titleElement.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeEffect, 200); // Adjust speed of typing effect
-      }
-    }
-
-    window.onload = () => {
-      titleElement.textContent = ''; // Clear text before typing
-      typeEffect();
-    };
-
-    // Ripple effect for button
-    document.querySelectorAll('.ripple-button').forEach(button => {
+    // Add ripple effect to buttons
+    document.querySelectorAll('button').forEach(button => {
       button.addEventListener('click', function (e) {
-        const rect = button.getBoundingClientRect();
-        const circle = document.createElement('span');
-        const diameter = Math.max(rect.width, rect.height);
-        const radius = diameter / 2;
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
 
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${e.clientX - rect.left - radius}px`;
-        circle.style.top = `${e.clientY - rect.top - radius}px`;
-        circle.classList.add('ripple');
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        ripple.classList.add('ripple');
 
-        const ripple = button.getElementsByClassName('ripple')[0];
+        this.appendChild(ripple);
 
-        if (ripple) {
+        setTimeout(() => {
           ripple.remove();
-        }
-
-        button.appendChild(circle);
+        }, 600);
       });
     });
   </script>
-
 </body>
 </html>
