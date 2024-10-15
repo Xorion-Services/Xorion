@@ -6,6 +6,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Centering for Index Page */
@@ -20,7 +25,7 @@ body {
 
 /* Text Styling */
 h1, h2 {
-  color: #bc51ec;
+  color: #7abfe1;
 }
 
 .cursive {
@@ -40,14 +45,14 @@ input, button {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #bc51ec;
+  border: 1px solid #7abfe1;
   border-radius: 5px;
   background-color: #333;
   color: #fff;
 }
 
 button {
-  background-color: #bc51ec;
+  background-color: #7abfe1;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -59,7 +64,7 @@ button {
 }
 
 button:hover {
-  background-color: #a03fd9;
+  background-color: #5ca4c7;
 }
 
 /* Ripple Effect */
@@ -110,7 +115,7 @@ input {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #bc51ec;
+  border: 1px solid #7abfe1;
   border-radius: 5px;
   background-color: #333;
   color: #fff;
@@ -118,18 +123,18 @@ input {
 
 button {
   margin-top: 10px;
-  background-color: #bc51ec;
+  background-color: #7abfe1;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #a03fd9;
+  background-color: #5ca4c7;
 }
 
 /* Password Visibility Toggle Button */
 .eye-btn {
   cursor: pointer;
-  color: #bc51ec;
+  color: #7abfe1;
   margin-left: 5px;
 }
 
@@ -137,7 +142,7 @@ button:hover {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #2a2a2a;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -150,7 +155,7 @@ button:hover {
 
 #orders-list li {
   background-color: #333;
-  border: 1px solid #bc51ec;
+  border: 1px solid #7abfe1;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
@@ -163,7 +168,7 @@ form input[type="number"] {
   margin-bottom: 10px;
   padding: 10px;
   width: 100%;
-  border: 1px solid #bc51ec;
+  border: 1px solid #7abfe1;
   border-radius: 5px;
   background-color: #333;
   color: #fff;
