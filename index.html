@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xorion - Home</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #1a1a1a;
@@ -17,45 +16,55 @@
       justify-content: center;
       height: 100vh;
     }
-    
-    .fly-up-text {
+
+    .write-text {
       font-family: 'Dancing Script', cursive;
       font-size: 4em;
-      color: #6b5b95; /* Darker purple */
-      position: relative;
-      animation: flyUp 2s ease-out forwards;
+      color: #bc51ec; /* Accent color */
+      border-right: 2px solid #bc51ec; /* Cursor effect */
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: writeText 4s steps(40, end) forwards, blinkCursor 1s step-end infinite;
     }
-    
-    @keyframes flyUp {
+
+    @keyframes writeText {
       from {
-        top: 100px;
-        opacity: 0;
+        width: 0;
       }
       to {
-        top: 0;
-        opacity: 1;
+        width: 10ch; /* Adjust to match the number of characters in "Xorion" */
       }
     }
-    
+
+    @keyframes blinkCursor {
+      from {
+        border-right-color: #bc51ec;
+      }
+      to {
+        border-right-color: transparent;
+      }
+    }
+
     .login-btn {
       margin-top: 20px;
       padding: 10px 20px;
-      background-color: #6b5b95; /* Darker purple */
+      background-color: #bc51ec; /* Accent color */
       border: none;
       border-radius: 5px;
       color: #fff;
       font-size: 1.2em;
       cursor: pointer;
     }
-    
+
     .login-btn:hover {
-      background-color: #5a4c7c;
+      background-color: #d892f6;
     }
   </style>
 </head>
 <body>
 
-  <h1 class="fly-up-text">Xorion</h1>
+  <h1 class="write-text">Xorion</h1>
 
   <button class="login-btn" onclick="location.href='login.html'">Login or Signup</button>
 
