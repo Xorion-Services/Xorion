@@ -135,7 +135,7 @@
                                 <div><strong>Service:</strong> ${order.service}</div>
                                 <div><strong>Currency:</strong> INR</div>
                                 <div><strong>Price:</strong> ₹${order.price}</div>
-                                <div><strong>Status:</strong> ${order.status}</div>
+                                <div><strong>Status:</strong> ${order.status || 'Unconfirmed'}</div> <!-- Default status -->
                             `;
                             ordersList.appendChild(orderItem);
                         }
