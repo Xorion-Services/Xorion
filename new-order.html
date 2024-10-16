@@ -3,22 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Order</title>
-    <script type="module" src="https://xorion.onrender.com/scripts.js"></script>
-</head>
-<body style="background-image: url('bg.jpg'); background-size: cover; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <title>New Order - Xorion</title>
+    <style>
+        /* Inline styles for page layout */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    <div style="background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); width: 300px;">
-        <h1 style="color: #7abfe1;">New Order</h1>
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            color: #7abfe1;
+            text-align: center;
+        }
+
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #7abfe1;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #7abfe1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background-color: #5ca4c7;
+        }
+
+        /* Ripple Effect */
+        button:active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            top: 0;
+            left: 0;
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>New Order</h1>
         <form id="orderForm">
-            <input type="text" id="name" placeholder="Your Name" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="email" id="email" placeholder="Your Email" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="text" id="service" placeholder="Service" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="number" id="price" placeholder="Price in INR" required style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px;">
-            <button type="submit" style="background-color: #7abfe1; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Place Order</button>
+            <input type="text" id="itemName" placeholder="Enter item name" required>
+            <input type="number" id="itemQuantity" placeholder="Enter quantity" required>
+            <input type="text" id="itemDescription" placeholder="Enter description" required>
+            <button type="submit">Place Order</button>
         </form>
-        <button onclick="window.location.href='orders.html';" style="background-color: transparent; color: #7abfe1; border: none; cursor: pointer; margin-top: 10px;">View Orders</button>
     </div>
-    
+
 </body>
 </html>
