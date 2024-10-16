@@ -4,30 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Xorion</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Body Styling */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('bg.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form Container Styling */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Translucent effect */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            width: 100%;
+        }
+
+        h1 {
+            color: #7abfe1;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #7abfe1;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            background-color: #7abfe1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background-color: #5ca4c7;
+        }
+
+        /* Ripple Effect */
+        button:active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            top: 0;
+            left: 0;
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+    </style>
 </head>
 <body>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
-<div class="form-container">
-    <h2>Login</h2>
-    <form id="loginForm">
-        <label for="username">Username</label>
-        <input type="text" id="username" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
-
-        <label for="password">Password</label>
-        <div class="password-container">
-            <input type="password" id="password" minlength="8" required>
-            <span id="togglePassword" class="eye-btn">&#128065;</span>
-        </div>
-
-        <button type="submit">Login</button>
-
-        <p>Don't have an account? <a href="signup.html">Signup here</a></p>
-    </form>
-</div>
-  <script type="module" src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
