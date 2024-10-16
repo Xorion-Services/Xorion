@@ -1,8 +1,9 @@
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+// Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-// Your Firebase configuration
+// Firebase configuration from your project
 const firebaseConfig = {
     apiKey: "AIzaSyAUuK-7DNf8dNijkxg78MmJAXuVcPWN-pk",
     authDomain: "xorion-2403.firebaseapp.com",
@@ -15,154 +16,77 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-// Function to toggle password visibility
-function togglePasswordVisibility(inputFieldId, toggleButtonId) {
-    const inputField = document.getElementById(inputFieldId);
-    const toggleButton = document.getElementById(toggleButtonId);
-
-    if (inputField.type === "password") {
-        inputField.type = "text";
-        toggleButton.textContent = "Hide";
-    } else {
-        inputField.type = "password";
-        toggleButton.textContent = "Show";
+// User Registration Function
+export const registerUser = async (email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.error('Error during registration:', error);
+        alert(error.message);
     }
-}
+};
 
-// Ensure the DOM is fully loaded before running any code
-document.addEventListener('DOMContentLoaded', function() {
-    // Login form event listener
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    console.log('Login successful:', userCredential.user);
-                    window.location.href = 'orders.html'; // Redirect to orders page
-                })
-                .catch((error) => {
-                    console.error('Login error:', error.message);
-                    alert('Login failed: ' + error.message);
-                });
-        });
+// User Login Function
+export const loginUser = async (email, password) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.error('Error during login:', error);
+        alert(error.message);
     }
+};
 
-    // Signup form event listener
-    const signupForm = document.getElementById('signupForm');
-    if (signupForm) {
-        signupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            // Check if password is at least 8 characters long
-            if (password.length < 8) {
-                alert("Password must be at least 8 characters long.");
-                return;
-            }
-
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    console.log('Signup successful:', userCredential.user);
-                    alert('Account created successfully! Redirecting to login...');
-                    window.location.href = 'login.html'; // Redirect to login page
-                })
-                .catch((error) => {
-                    console.error('Signup error:', error.message);
-                    alert('Signup failed: ' + error.message);
-                });
-        });
+// User Logout Function
+export const logoutUser = async () => {
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.error('Error during logout:', error);
+        alert(error.message);
     }
+};
 
-    // Event listeners for password visibility toggles
-    const togglePassword = document.getElementById('togglePassword');
-    if (togglePassword) {
-        togglePassword.addEventListener('click', () => {
-            togglePasswordVisibility('password', 'togglePassword');
-        });
+// Place New Order Function
+export const placeOrder = async (order) => {
+    try {
+        // Add user ID to the order
+        order.userId = auth.currentUser.uid; // Make sure user is logged in
+        order.status = 'Unconfirmed'; // Set default status
+        await addDoc(collection(db, 'orders'), order);
+        alert('Order placed successfully!');
+    } catch (error) {
+        console.error('Error placing order:', error);
+        alert(error.message);
     }
+};
 
-    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-    if (toggleConfirmPassword) {
-        toggleConfirmPassword.addEventListener('click', () => {
-            togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword');
-        });
-    }
-
-    // New order form event listener
-    const newOrderForm = document.getElementById('orderForm');
-    if (newOrderForm) {
-        newOrderForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const service = document.getElementById('service').value;
-            const price = document.getElementById('price').value;
-
-            if (!name || !email || !service || !price) {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            try {
-                const docRef = await addDoc(collection(db, 'orders'), {
-                    username: auth.currentUser.email,
-                    name: name,
-                    email: email,
-                    service: service,
-                    price: price,
-                    currency: 'INR'
-                });
-                console.log('Order placed with ID:', docRef.id);
-                alert('Order placed successfully!');
-                window.location.href = 'orders.html';
-            } catch (error) {
-                console.error('Error placing order:', error);
-                alert('Failed to place order: ' + error.message);
-            }
-        });
-    }
-
-    // Fetch and display previous orders
-    async function fetchOrders() {
-        if (!auth.currentUser) {
-            alert("You need to be logged in to view orders.");
-            window.location.href = "login.html";
-            return;
-        }
-
-        const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
-        const querySnapshot = await getDocs(q);
-        const ordersList = document.getElementById('orders-list');
-
-        if (querySnapshot.empty) {
-            ordersList.innerHTML = '<p>No previous orders found.</p>';
-            return;
-        }
-
+// Get User Orders Function
+export const getUserOrders = (userId, callback) => {
+    const ordersQuery = query(collection(db, 'orders'));
+    onSnapshot(ordersQuery, (querySnapshot) => {
+        const orders = [];
         querySnapshot.forEach((doc) => {
-            const orderData = doc.data();
-            const orderItem = document.createElement('li');
-            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR`;
-            ordersList.appendChild(orderItem);
-        });
-    }
-
-    // Check the authentication state before fetching orders
-    if (window.location.pathname.endsWith('orders.html')) {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                fetchOrders();
-            } else {
-                window.location.href = 'login.html'; // Redirect to login if not authenticated
+            const order = doc.data();
+            if (order.userId === userId) { // Filter orders for the logged-in user
+                orders.push(order);
             }
         });
-    }
-});
+        callback(orders);
+    });
+};
+
+// Check Authentication State
+export const checkAuthState = (callback) => {
+    onAuthStateChanged(auth, (user) => {
+        callback(user);
+    });
+};
+
+// Example of using these functions in your HTML files
+// Make sure to call these functions in your respective HTML files.
+// import these functions where necessary, e.g., in login.html or new-order.html
