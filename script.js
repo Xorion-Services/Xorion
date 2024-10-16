@@ -1,4 +1,3 @@
-// Import Firebase functionalities
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
@@ -31,14 +30,6 @@ function togglePasswordVisibility(inputFieldId, toggleButtonId) {
         inputField.type = "password";
         toggleButton.textContent = "Show";
     }
-}
-
-// Function to fetch user orders
-async function getUserOrders(username) {
-    const q = query(collection(db, 'orders'), where('username', '==', username));
-    const querySnapshot = await getDocs(q);
-    
-    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
 // Ensure the DOM is fully loaded before running any code
@@ -127,8 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     service: service,
                     price: price,
-                    currency: 'INR',
-                    status: 'Unconfirmed' // Setting the default status
+                    currency: 'INR'
                 });
                 console.log('Order placed with ID:', docRef.id);
                 alert('Order placed successfully!');
@@ -148,26 +138,30 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const orders = await getUserOrders(auth.currentUser.email);
+        const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
+        const querySnapshot = await getDocs(q);
         const ordersList = document.getElementById('orders-list');
 
-        if (orders.length === 0) {
-            ordersList.innerHTML = '<p>No previous orders found.</p>';
+        // Check if there are no orders and update the UI accordingly
+        if (querySnapshot.empty) {
+            ordersList.innerHTML = '<p>No previous orders found.</p>'; // Display this message if no orders are found.
             return;
         }
 
-        orders.forEach(order => {
+        // Populate the orders list with order data
+        querySnapshot.forEach((doc) => {
+            const orderData = doc.data();
             const orderItem = document.createElement('li');
-            orderItem.textContent = `Name: ${order.name}, Email: ${order.email}, Service: ${order.service}, Price: ${order.price} INR, Status: ${order.status || 'Unconfirmed'}`;
+            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR`;
             ordersList.appendChild(orderItem);
         });
     }
 
     // Check the authentication state before fetching orders
     if (window.location.pathname.endsWith('orders.html')) {
-        onAuthStateChanged(auth, async (user) => {
+        onAuthStateChanged(auth, (user) => {
             if (user) {
-                await fetchOrders();
+                fetchOrders();
             } else {
                 window.location.href = 'login.html'; // Redirect to login if not authenticated
             }
