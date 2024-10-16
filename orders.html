@@ -3,91 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Orders - Xorion</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('bg.jpg');
-            background-size: cover;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            color: #7abfe1;
-            text-align: center;
-        }
-        .order {
-            border: 1px solid #7abfe1;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .new-order-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #7abfe1;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
-        .no-orders {
-            text-align: center;
-            margin: 20px 0;
-        }
-    </style>
+    <title>Your Orders</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://xorion.onrender.com/scripts.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Your Orders</h1>
-        <div id="ordersList"></div>
-        <div class="no-orders" id="noOrdersMessage" style="display: none;">No previous orders.</div>
-        <button class="new-order-btn" onclick="window.location.href='new-order.html'">New Order</button>
+        <ul id="orders-list"></ul>
+        <button onclick="window.location.href='new-order.html';">New Order</button>
     </div>
-
-    <script type="module">
-        import { checkAuthState, getUserOrders } from './scripts.js';
-
-        checkAuthState((user) => {
-            if (user) {
-                getUserOrders(user.uid, (orders) => {
-                    const ordersList = document.getElementById('ordersList');
-                    const noOrdersMessage = document.getElementById('noOrdersMessage');
-                    ordersList.innerHTML = ''; // Clear previous orders
-                    if (orders.length > 0) {
-                        noOrdersMessage.style.display = 'none'; // Hide no orders message
-                        orders.forEach(order => {
-                            const orderDiv = document.createElement('div');
-                            orderDiv.className = 'order';
-                            orderDiv.innerHTML = `
-                                <strong>Name:</strong> ${order.name}<br>
-                                <strong>Email:</strong> ${order.email}<br>
-                                <strong>Service:</strong> ${order.service}<br>
-                                <strong>Price:</strong> ₹${order.price}<br>
-                                <strong>Status:</strong> ${order.status || 'Unconfirmed'}
-                            `;
-                            ordersList.appendChild(orderDiv);
-                        });
-                    } else {
-                        noOrdersMessage.style.display = 'block'; // Show no orders message
-                    }
-                });
-            } else {
-                window.location.href = 'login.html'; // Redirect to login if not authenticated
-            }
-        });
-    </script>
 </body>
 </html>
