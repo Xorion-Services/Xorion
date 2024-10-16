@@ -50,8 +50,10 @@
             margin-bottom: 10px;
         }
 
-        .order-item div {
-            margin-bottom: 10px;
+        .no-orders {
+            color: #ffffff;
+            text-align: center;
+            margin: 20px 0;
         }
 
         button {
@@ -74,6 +76,7 @@
 <body>
     <div class="orders-container">
         <h1>Your Orders</h1>
+        <div id="no-orders-message" class="no-orders" style="display: none;">No previous orders.</div>
         <ul id="orders-list"></ul>
         <!-- New Order Button at the end -->
         <button class="new-order-btn" onclick="window.location.href='new-order.html'">New Order</button>
@@ -90,7 +93,7 @@
             apiKey: "AIzaSyAUuK-7DNf8dNijkxg78MmJAXuVcPWN-pk",
             authDomain: "xorion-2403.firebaseapp.com",
             projectId: "xorion-2403",
-            storageBucket: "xorion-2403.appspot.com",
+            storageBucket: "xorion-2403",
             messagingSenderId: "553221192525",
             appId: "1:553221192525:web:486e0b738988edfc2a9504",
             measurementId: "G-BL2WDYJYT6"
@@ -103,6 +106,7 @@
 
         // DOM elements
         const ordersList = document.getElementById('orders-list');
+        const noOrdersMessage = document.getElementById('no-orders-message');
 
         // Check if the user is logged in and retrieve their orders
         onAuthStateChanged(auth, (user) => {
@@ -112,12 +116,15 @@
 
                 onSnapshot(ordersQuery, (querySnapshot) => {
                     ordersList.innerHTML = '';  // Clear existing orders
+                    let hasOrders = false; // Flag to check if orders exist
 
                     querySnapshot.forEach((doc) => {
                         const order = doc.data();
                         
                         // Ensure the order belongs to the logged-in user
                         if (order.userId === user.uid) {
+                            hasOrders = true; // Set flag to true if an order is found
+
                             const orderItem = document.createElement('li');
                             orderItem.classList.add('order-item');
 
@@ -133,6 +140,9 @@
                             ordersList.appendChild(orderItem);
                         }
                     });
+
+                    // Show message if no orders found
+                    noOrdersMessage.style.display = hasOrders ? 'none' : 'block';
                 });
             } else {
                 alert('You need to log in first.');
