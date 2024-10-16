@@ -97,17 +97,18 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Check if the user is already logged in
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // User is signed in, redirect to the dashboard or orders page
-                window.location.href = "orders.html";
-            }
-        });
-
         // Handle the "Get Started" button click
         document.getElementById('getStartedBtn').addEventListener('click', () => {
-            window.location.href = "login.html";  // Redirect to login page
+            // Check if the user is already logged in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in, redirect to the orders page
+                    window.location.href = "orders.html";
+                } else {
+                    // If not signed in, redirect to the login page
+                    window.location.href = "login.html";
+                }
+            });
         });
     </script>
 </body>
