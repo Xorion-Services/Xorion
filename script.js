@@ -1,6 +1,7 @@
+// Import Firebase functionalities
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -30,6 +31,14 @@ function togglePasswordVisibility(inputFieldId, toggleButtonId) {
         inputField.type = "password";
         toggleButton.textContent = "Show";
     }
+}
+
+// Function to fetch user orders
+async function getUserOrders(username) {
+    const q = query(collection(db, 'orders'), where('username', '==', username));
+    const querySnapshot = await getDocs(q);
+    
+    return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
 // Ensure the DOM is fully loaded before running any code
@@ -139,28 +148,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
-        const querySnapshot = await getDocs(q);
+        const orders = await getUserOrders(auth.currentUser.email);
         const ordersList = document.getElementById('orders-list');
 
-        if (querySnapshot.empty) {
+        if (orders.length === 0) {
             ordersList.innerHTML = '<p>No previous orders found.</p>';
             return;
         }
 
-        querySnapshot.forEach((doc) => {
-            const orderData = doc.data();
+        orders.forEach(order => {
             const orderItem = document.createElement('li');
-            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR, Status: ${orderData.status || 'Unconfirmed'}`;
+            orderItem.textContent = `Name: ${order.name}, Email: ${order.email}, Service: ${order.service}, Price: ${order.price} INR, Status: ${order.status || 'Unconfirmed'}`;
             ordersList.appendChild(orderItem);
         });
     }
 
     // Check the authentication state before fetching orders
     if (window.location.pathname.endsWith('orders.html')) {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
-                fetchOrders();
+                await fetchOrders();
             } else {
                 window.location.href = 'login.html'; // Redirect to login if not authenticated
             }
