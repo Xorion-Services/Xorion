@@ -41,13 +41,23 @@
     button:hover {
       background-color: #5ca4c7;
     }
+    .new-order-btn {
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="orders-container">
     <h2>Your Orders</h2>
     <ul id="orders-list"></ul>
+    
+    <!-- New Order Button -->
+    <div class="new-order-btn">
+      <button onclick="window.location.href='new-order.html';">New Order</button>
+    </div>
   </div>
+
   <script type="module" src="script.js"></script>
 </body>
 </html>
