@@ -69,28 +69,19 @@
             }
         }
 
-        /* Style for the app container */
-        #app {
-            display: none; /* Initially hidden, will show based on navigation */
-        }
     </style>
 </head>
 <body>
-    <div class="hero-container" id="welcome-screen">
+    <div class="hero-container">
         <h1>Xorion</h1>
         <button id="getStartedBtn">Get Started</button>
     </div>
-    
-    <div id="app">
-        <!-- Dynamic content will be loaded here -->
-    </div>
-
     <script type="module">
-        // Import Firebase modules
+        // Import Firebase modules with your correct version
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-        // Firebase configuration
+        // Firebase configuration from your project
         const firebaseConfig = {
             apiKey: "AIzaSyAUuK-7DNf8dNijkxg78MmJAXuVcPWN-pk",
             authDomain: "xorion-2403.firebaseapp.com",
@@ -110,59 +101,14 @@
             // Check if the user is already logged in
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    // User is signed in, load the orders page content
-                    loadPage('orders');
+                    // User is signed in, redirect to the orders page
+                    window.location.href = "orders.html";
                 } else {
-                    // If not signed in, load the login page content
-                    loadPage('login');
+                    // If not signed in, redirect to the login page
+                    window.location.href = "login.html";
                 }
             });
         });
-
-        // Function to load the content based on the route
-        function loadPage(page) {
-            const appContainer = document.getElementById('app');
-            const welcomeScreen = document.getElementById('welcome-screen');
-
-            // Hide the welcome screen
-            welcomeScreen.style.display = 'none';
-            appContainer.style.display = 'block';
-
-            // Load the specific page content
-            if (page === 'orders') {
-                // Load orders HTML
-                appContainer.innerHTML = `
-                    <h2>Your Orders</h2>
-                    <ul id="orders-list"></ul>
-                `;
-                fetchOrders(); // Call your function to fetch orders
-            } else if (page === 'login') {
-                // Load login HTML
-                appContainer.innerHTML = `
-                    <h2>Login</h2>
-                    <form id="loginForm">
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="password" id="password" placeholder="Password" required>
-                        <button type="submit">Login</button>
-                    </form>
-                `;
-                // Add event listener for login form
-                document.getElementById('loginForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-
-                    // Implement your login logic here
-                });
-            }
-        }
-
-        // Implement your fetchOrders function here
-        async function fetchOrders() {
-            // Add your Firebase fetching logic for orders
-            console.log('Fetching orders...');
-            // This is just a placeholder; implement the actual fetching logic from Firebase
-        }
     </script>
 </body>
 </html>
