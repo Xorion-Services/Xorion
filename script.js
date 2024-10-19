@@ -130,33 +130,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Fetch and display previous orders
-    async function fetchOrders() {
-        if (!auth.currentUser) {
-            alert("You need to be logged in to view orders.");
-            window.location.href = "login.html";
-            return;
-        }
-
-        const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
-        const querySnapshot = await getDocs(q);
-        const ordersList = document.getElementById('orders-list');
-
-        // Check if there are no orders and update the UI accordingly
-        if (querySnapshot.empty) {
-            ordersList.innerHTML = '<p>No previous orders found.</p>'; // Display this message if no orders are found.
-            return;
-        }
-
-        // Populate the orders list with order data
-        querySnapshot.forEach((doc) => {
-            const orderData = doc.data();
-            const orderItem = document.createElement('li');
-            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR, Status: ${orderData.status}`;
-            ordersList.appendChild(orderItem);  // Display the status along with other order details
-        });
+// Fetch and display previous orders
+async function fetchOrders() {
+    if (!auth.currentUser) {
+        alert("You need to be logged in to view orders.");
+        window.location.href = "login.html";
+        return;
     }
+
+    const q = query(collection(db, 'orders'), where('username', '==', auth.currentUser.email));
+    const querySnapshot = await getDocs(q);
+    const ordersList = document.getElementById('orders-list');
+
+    // Check if there are no orders and update the UI accordingly
+    if (querySnapshot.empty) {
+        ordersList.innerHTML = '<p>No previous orders found.</p>'; // Display this message if no orders are found.
+        return;
+    }
+
+    // Populate the orders list with order data
+    querySnapshot.forEach((doc) => {
+        const orderData = doc.data();
+
+        // Create the order item
+        const orderItem = document.createElement('li');
+        orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR, Status: ${orderData.status}`;
+
+        // Append the order item to the orders list
+        ordersList.appendChild(orderItem);
+
+        // Create and append an <hr> to separate each order
+        const separator = document.createElement('hr');
+        ordersList.appendChild(separator);
+    });
+}
 
     // Check the authentication state before fetching orders
     if (window.location.pathname.endsWith('orders.html')) {
