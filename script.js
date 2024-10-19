@@ -118,7 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     service: service,
                     price: price,
-                    currency: 'INR'
+                    currency: 'INR',
+                    status: 'Unconfirmed'  // Add the status field
                 });
                 console.log('Order placed with ID:', docRef.id);
                 alert('Order placed successfully!');
@@ -152,8 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
         querySnapshot.forEach((doc) => {
             const orderData = doc.data();
             const orderItem = document.createElement('li');
-            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR`;
-            ordersList.appendChild(orderItem);
+            orderItem.textContent = `Name: ${orderData.name}, Email: ${orderData.email}, Service: ${orderData.service}, Price: ${orderData.price} INR, Status: ${orderData.status}`;
+            ordersList.appendChild(orderItem);  // Display the status along with other order details
         });
     }
 
