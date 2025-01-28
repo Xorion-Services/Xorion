@@ -48,24 +48,6 @@ async function getUsername(uid) {
     }
 }
 
-// Function to show custom popup with a message
-function showCustomPopup(message) {
-    const popup = document.getElementById('customPopup');
-    const popupMessage = document.getElementById('popupMessage');
-    const popupOKButton = document.getElementById('popupOKButton');
-    
-    // Set the message text
-    popupMessage.textContent = message;
-    
-    // Show the popup
-    popup.style.display = 'block';
-    
-    // Add event listener to close popup when OK is clicked
-    popupOKButton.addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const userIcon = document.getElementById('user-icon');
     const popupMenu = document.getElementById('popupMenu');
@@ -117,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
 
             if (password.length < 8) {
-                showCustomPopup("Password must be at least 8 characters long.");
+                alert("Password must be at least 8 characters long.");
                 return;
             }
 
@@ -130,12 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     return setDoc(doc(db, "users", userCredential.user.uid), userData);
                 })
                 .then(() => {
-                    showCustomPopup('Account created successfully! Redirecting to login...');
+                    alert('Account created successfully! Redirecting to login...');
                     window.location.href = 'login.html';
                 })
                 .catch((error) => {
                     console.error('Signup error:', error);
-                    showCustomPopup('Signup failed: ' + error.message);
+                    alert('Signup failed: ' + error.message);
                 });
         });
     }
@@ -144,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            showCustomPopup("Logged in successfully");
+            alert("Logged in successfully");
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -157,18 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.location.href = 'orders.html';
                         } else {
                             console.error("User document not found! This should not happen.");
-                            showCustomPopup("Login failed: User data is missing. Please contact support.");
+                            alert("Login failed: User data is missing. Please contact support.");
                             signOut(auth);
                         }
                     } catch (error) {
                         console.error("Error validating username:", error);
-                        showCustomPopup("Login failed: Error validating user data. Please try again.");
+                        alert("Login failed: Error validating user data. Please try again.");
                         signOut(auth);
                     }
                 })
                 .catch((error) => {
                     console.error('Login error:', error);
-                    showCustomPopup('Login failed: ' + error.message);
+                    alert('Login failed: ' + error.message);
                 });
         });
     }
@@ -197,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const number = document.getElementById('number').value;
 
             if (!name || !email || !service || !number) {
-                showCustomPopup('Please fill in all fields.');
+                alert('Please fill in all fields.');
                 return;
             }
 
@@ -211,11 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     status: 'Unconfirmed'
                 });
                 console.log('Order placed with ID:', docRef.id);
-                showCustomPopup('Order placed successfully!');
+                alert('Order placed successfully!');
                 window.location.href = 'orders.html';
             } catch (error) {
                 console.error('Error placing order:', error);
-                showCustomPopup('Failed to place order: ' + error.message);
+                alert('Failed to place order: ' + error.message);
             }
         });
     }
