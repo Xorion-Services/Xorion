@@ -7,15 +7,8 @@
     <title>Login - Xorion</title>
     <!-- Standard Favicon -->
     <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
-
-    <!-- PNG Icons for different sizes -->
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-    <link rel="manifest" href="icons/site.webmanifest">
-    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" src="styles.css">
+
     <style>
         /* General Body Styling */
         body {
@@ -26,10 +19,10 @@
             padding: 0;
             height: 100vh;
             background-image: url('icons/bg.png');
-            /* Background image */
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -37,21 +30,17 @@
         /* Form Container Styling */
         .form-container {
             background-color: rgba(0, 0, 0, 0.5);
-            /* Translucent effect */
             border-radius: 15px;
             padding: 30px;
             max-width: 400px;
+            width: 90%; /* Adjust width for smaller screens */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            width: 100%;
-            font-family: 'Minecraftia', sans-serif;
+            text-align: center;
         }
 
         h1 {
-            color: white;
-            text-align: center;
             margin-bottom: 20px;
             font-size: 2em;
-            font-family: 'Minecraftia', sans-serif;
         }
 
         input,
@@ -64,38 +53,62 @@
             border-radius: 5px;
             background-color: #333;
             color: #fff;
-            font-family: 'Minecraftia', sans-serif;
         }
 
         #log {
             background-color: #7700ff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 1em;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Minecraftia', sans-serif;
         }
 
-        /* Ripple Effect */
-        #log:active::after {
-            content: '';
-            position: absolute;
+        #log:hover {
+            background-color: #5500cc;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
             width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            top: 0;
+            position: fixed;
+            bottom: 0;
             left: 0;
-            animation: ripple-animation 0.6s linear;
+            font-size: 0.9em;
         }
 
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
+        footer a {
+            color: #7700ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styling for Small Screens */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            input,
+            #log {
+                padding: 8px;
+            }
+
+            footer {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -109,24 +122,21 @@
             <input type="email" id="email" placeholder="Enter your email" required>
             <input type="password" id="password" placeholder="Enter your password" required>
             <button id="log" type="submit">Login</button>
-            <p>Don't have an account? <a href="signup.html" style="color: #7700ff; text-decoration: none">Signup
-                    here</a></p>
+            <p>Don't have an account? <a href="signup.html">Signup here</a></p>
         </form>
     </div>
 
-    <script type="module" src="scripts.js"></script>
-    
+    <footer>
+        © <span id="year"></span> <a href="https://xorion.onrender.com" target="_blank">Xorion Services</a>. All rights reserved.
+        <br> Contact us at <a href="mailto:xorion.services@gmail.com">xorion.services@gmail.com</a>
+    </footer>
+
     <script>
+        // Set the current year
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
-
-
-
-    <footer>
-        © <span id="year"></span> <a href="https://xorion.onrender.com" target="_blank"> Xorion Services</a>. All rights reserved. <br> Contact us at  <a href="mailto:xorion.services@gmail.com">xorion.services@gmail.com</a>
-    </footer>
 </body>
 
 </html>
