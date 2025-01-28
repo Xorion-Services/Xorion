@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xorion - Signup</title>
+  <link rel="stylesheet" src="styles.css">
+  <!-- Standard Favicon -->
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+  <!-- PNG Icons for different sizes -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="icons/site.webmanifest">
+  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    body {
+      background-image: url('icons/bg.png');
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Minecraftia', sans-serif;
+    }
+
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    input,
+    button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #7700ff;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-family: 'Minecraftia', sans-serif;
+    }
+
+    button {
+      background-color: #7700ff;
+      cursor: pointer;
+      font-family: 'Minecraftia', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2 style="text-align: center;">Signup</h2>
+    <form id="signupForm">
+      <label for="username"></label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <label for="email"></label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <label for="password"></label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <label for="confirmPassword"></label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+      <button type="submit">Signup</button>
+      <p>Already have an account? <a href="login.html" style="color: #7700ff; text-decoration:none">Login here</a></p>
+    </form>
+    <script type="module" src="scripts.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          document.getElementById('year').textContent = new Date().getFullYear();
+      });
+  </script>
+
+  <footer>
+      © <span id="year"></span> <a href="https://xorion.onrender.com" target="_blank"> Xorion Services</a>. All rights reserved. <br> Contact us at  <a href="mailto:xorion.services@gmail.com">xorion.services@gmail.com</a>
+  </footer>
+</body>
+
+</html>

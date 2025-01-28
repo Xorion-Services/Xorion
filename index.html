@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xorion Repairs</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Standard Favicon -->
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+    <!-- PNG Icons for different sizes -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icons/logo.png" alt="Xorion Repairs Logo" style="border-radius: 5px;">
+        </div>
+        <ul>
+            <li><a href="#contact"><img src="icons/contact.png" alt="Contact Us Icon"></a></li>
+            <li><span id="user-icon"><img src="icons/user.png" alt="User Icon" class="login-icon"></span></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1 class="animated">Welcome to Xorion Repairs</h1>
+        <p class="description">At Xorion Repairs, We Have Experts To Help With You With Every Problem And We Fix Your
+            Device For A Cheap Price.</p>
+        <a href="orders.html" class="get-started-btn">Get Started</a>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="popupMenu">
+        <h2 id="userGreeting">User Menu</h2>
+        <button id="loginButton" style="display: none;">Login</button>
+        <button id="logoutButton" style="display: none;">Logout</button>
+        <button id="closeButton">Close</button>
+    </div>
+
+    <script type="module" src="homeauth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+
+
+    <footer>
+        © <span id="year"></span> <a href="https://xorion.onrender.com" target="_blank"> Xorion Services</a>. All rights reserved. <br> Contact us at  <a href="mailto:xorion.services@gmail.com">xorion.services@gmail.com</a>
+    </footer>
+</body>
+
+</html>

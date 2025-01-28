@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xorion Repairs</title>
+  <link rel="stylesheet" src="styles.css">
+  <!-- Standard Favicon -->
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <!-- PNG Icons for different sizes -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="icons/site.webmanifest">
+  <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    /* Inline styles for page layout */
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('icons/bg.png');
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Minecraftia', sans-serif;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #7700ff;
+      border-radius: 5px;
+      background-color: #333;
+      color: #fff;
+      font-family: 'Minecraftia', sans-serif;
+    }
+
+    button {
+      background-color: #7700ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Minecraftia', sans-serif;
+      margin-bottom: 90px;
+    }
+
+    button:hover {
+      background-color: #7700ff;
+    }
+
+    ul#orders-list {
+      width: 95%;
+      margin: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      list-style: none;
+      text-align: left;
+    }
+
+    ul#orders-list li {
+      padding: 10px;
+      border: 1px solid #7700ff;
+      border-radius: 5px;
+      background-color: #333;
+      background-position: left;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Orders list section -->
+  <h1>Your Orders</h1>
+  <ul id="orders-list"></ul>
+  <a href="place-order.html" style="text-decoration: none;"><button>Place Order</button></a>
+
+  <script type="module" src="fetch.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('year').textContent = new Date().getFullYear();
+    });
+</script>
+
+
+
+<footer>
+    © <span id="year"></span> <a href="https://xorion.onrender.com" target="_blank"> Xorion Services</a>. All rights reserved. <br> Contact us at  <a href="mailto:xorion.services@gmail.com">xorion.services@gmail.com</a>
+</footer>
+</body>
+
+</html>

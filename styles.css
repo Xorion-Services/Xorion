@@ -1,0 +1,298 @@
+body {
+    margin: 0;
+    font-family: 'Minecraftia', sans-serif;
+    background: url('icons/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 15px;
+}
+
+footer a {
+    color: #7700ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 30px;
+    z-index: 1000;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar img {
+    height: 40px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar ul li a img {
+    height: 30px;
+    vertical-align: middle;
+    transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease;
+    position: relative;
+}
+
+.navbar ul li a img:hover {
+    transform: scale(1.3);
+}
+
+.navbar .login-icon {
+    height: 30px;
+    transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease;
+    position: relative;
+}
+
+.navbar .login-icon:hover {
+    transform: scale(1.3);
+}
+
+.content {
+    margin-top: 120px;
+    /* Space for the floating navbar */
+    padding: 20px;
+    text-align: center;
+}
+
+.animated {
+    animation: fadeInUp 2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 1.2em;
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #d3d3d3;
+    animation:
+        typing 4s steps(40, end),
+        blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #818181
+    }
+}
+
+.get-started-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 30px;
+    background: linear-gradient(to right, #f05063, #dd2473);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.get-started-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Translucent white background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-container button {
+    background-color: #9900CC;
+    /* Purple accent color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container a {
+    color: #9900CC;
+    /* Purple accent color */
+    text-decoration: none;
+}
+
+#popupMenu {
+    display: none;
+    /* Initially hidden */
+    position: fixed;
+    /* Stay in place during scroll */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Center the popup */
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1001;
+    /* Ensure it's on top */
+    border-radius: 8px;
+}
+
+#popupMenu button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Overlay to darken the background */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent black */
+    backdrop-filter: blur(10px);
+    /* Apply the blur effect */
+    z-index: 999;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent black */
+    backdrop-filter: blur(10px);
+    /* Apply the blur effect */
+    z-index: 999;
+}
+
+/* Style for the cancel button inline */
+.cancel-button {
+    background-color: #e74c3c;
+    /* Red background for the cancel button */
+    color: #fff;
+    /* White text color */
+    border: none;
+    padding: 5px 10px;
+    /* Smaller padding for compact button */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    /* Slightly smaller text */
+    margin-left: 10px;
+    /* Space between the button and the other elements */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+    display: inline-block;
+    /* Makes the button inline with the text */
+}
+
+/* Hover effect */
+.cancel-button:hover {
+    background-color: #c0392b;
+    /* Darker red when hovering */
+}
+
+/* Focus effect (optional for accessibility) */
+.cancel-button:focus {
+    outline: 2px solid #fff;
+    /* White outline when focused */
+    outline-offset: 2px;
+}
